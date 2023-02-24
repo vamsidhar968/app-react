@@ -1,25 +1,187 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+// import { Changecolor } from './Changecolor';
+import {Routes,Route,Link, useParams } from "react-router-dom";
+import { Changecolor } from './Changecolor';
+import { NamePic } from './NamePic';
+import { BookList } from './BookList';
+export const INITIAL_BOOK_LIST = [
+  {
+    name: "Charlotte's web",
+    poster:
+      "https://cdn.britannica.com/64/103064-050-295C6879/Charlottes-Web-EB-Garth-Williams.jpg",
+    rating: 8.8,
+    summary:
+      "The novel tells the story of a livestock pig named Wilbur and his friendship with a barn spider named Charlotte. When Wilbur is in danger of being slaughtered by the farmer, Charlotte writes messages praising Wilbur in her web in order to persuade the farmer to let him live.",
+  },
+  {
+    name: "The power of your subconscious mind",
+    poster:
+      "https://kbimages1-a.akamaihd.net/6f3cf06c-4811-42d4-bd63-564c8264bc2d/1200/1200/False/the-power-of-your-subconscious-mind-57.jpg",
+    rating: 7,
+    summary:
+      "Your subconscious mind is a powerful force to be reckoned with. It makes up around 95% of your brain power and handles everything your body needs to function properly, from eating and breathing to digesting and making memories",
+    trailer: "https://www.youtube.com/embed/Solb9uA-tgQ",
+  },
+  {
+    name: "Attitude is everything ",
+    poster: "https://miro.medium.com/max/1400/1*ItFOYfi8Dyy0yj9n1SE8uQ.jpeg",
+    rating: 8.1,
+    summary:
+      "Attitude, In psychology, a mental position with regard to a fact or state. Attitudes reflect a tendency to classify objects and events and to react to them with some consistency. Attitudes are not directly observable but rather are inferred from the objective, evaluative responses a person makes.",
+  },
+  {
+    name: "The Secret",
+    poster: "https://m.media-amazon.com/images/I/81fdQIY6ykL.jpg",
+    summary:
+      "There's no secret to The Secret. The book and movie simply state that your thoughts control the universe. Through this “law of attraction” you “manifest” your desires. “It is exactly like placing an order from a catalogue",
+    rating: 8.8,
+  },
+  {
+    name: "Discover Your Destiny",
+    rating: 6,
+    summary:
+      "'Discover Your Destiny' is a story about enlightenment of Dar Sanderson, who is an incredibly ambitious executive. The book throws light on the fact that 'happiness and harmony can never be achieved and assured by SUCCESS'. Dar is an achiever in almost every aspect of life, yet he is void from the inside.",
+    poster: "https://m.media-amazon.com/images/I/61t18yWH5qL.jpg",
+  },
+  {
+    name: "The 5 AM Club",
+    poster: "https://m.media-amazon.com/images/I/71zytzrg6lL.jpg",
+    rating: 8.6,
+    summary:
+      "In The 5 AM Club: Own Your Morning. Elevate Your Life, he uses a fictitious story about a billionaire mentor teaching a struggling artist and an entrepreneur about the importance of waking up early to show how revolutionary it is for success.",
+  },
+  {
+    name: "Atomic Habits",
+    poster: "https://m.media-amazon.com/images/I/91bYsX41DVL.jpg",
+    rating: 7.9,
+    summary:
+      "Atomic Habits is the definitive guide to breaking bad behaviors and adopting good ones in four steps, showing you how small, incremental, everyday routines compound into massive, positive change over time.",
+  },
+  {
+    name: "I Can Do It",
+    poster: "https://images-na.ssl-images-amazon.com/images/I/81T3L1yTJwL.jpg",
+    rating: 8,
+    summary:
+      "Hay shows you that you “can do it”—that is, change and improve virtually every aspect of your life—by understanding and using affirmations correctly. Louise explains that every thought you think and every word you speak is an affirmation. Even your self-talk, your internal dialogue, is a stream of affirmations.",
+  },
+];
+
+export const obj = [
+  {name:"Vamsi",
+    pic:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2-QM5dt3w73nejHCR9peB2o98yHOcI6jLxg&usqp=CAU"
+  },
+  {name:"Chinna",
+    pic:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsxpJxFOtoiJhB9nvQsEsHXmgTAatQD7o7-Q&usqp=CAU"
+  },
+  {name:"Prabha",
+    pic:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwP3WSGJPQAQIeQ7JJJ56CkzxgEZhsw7P3Nw&usqp=CAU"
+  },
+]
+
 
 function App() {
+  // js starts
+  // const name ="vamsi";
+  // const name1 ="chinna"
+  // const names = ["vamsi", "chinna", "vikas", "sanjeev", "Yuga"]
+
+  // js ends
+  // jsx starts
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <h1>Hello {name} and {name1}</h1> */}
+       {/* <h1>Hello CodeSandbox</h1>
+      <h2>Start editing to see some magic happen!</h2> */}
+
+      {/* <Second name = {names[0]}/>
+      <Second name = {names[1]}/>
+      <Second name = {names[2]}/> */}
+
+{/*       
+      {names.map((person,index) => 
+      <Second name = {person} num = {index}/>)} */}
+
+      {/* {
+        obj.map(user => 
+        <Group name = {user.name} pic = {user.pic}/>)
+      } */}
+
+
+{/* 
+      <First
+        name="Vamsi"
+        pic="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2-QM5dt3w73nejHCR9peB2o98yHOcI6jLxg&usqp=CAU"
+      />
+      <First
+        name="Bharath"
+        pic="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSux-tggbCDFeyKdqdKonT6zXOHR3TzdqPXJrWJ-hlFJpl1xOZV6giGAiCKqsol6MOPshI&usqp=CAU"
+      />
+      <First
+        name="Prakash"
+        pic="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0s-_blb4lEdA99WhU9RvWXWRskaHJA4snyQ&usqp=CAU"
+      /> */}
+
+      {/* <Buttoncount/>
+      <Buttoncount1/> */}
+      {/* <Changecolor/> */}
+      {/* <Example1/>
+      {
+        names.map((value, index) => <Example2 name={value}/>)
+      }
+
+      {
+        obj.map((value, index) => <Example2 name={value.name}/>)
+      } */}
+
+      {/* <Buttonexample/>
+      <Coloring/> */}
+
+    <nav>
+      <li>
+      <Link to="/">Home</Link>
+      </li>
+      <li>
+      <Link to="/Book">Books</Link>
+      </li>
+      <li>
+      <Link to="/addcolor">ColorGame</Link>
+      </li>
+      <li>
+      <Link to="/picname">Namedetail</Link>
+      </li>
+    </nav>
+
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/Book" element={<BookList />} />
+      <Route path="/addcolor" element={<Changecolor />} />
+      <Route path="/picName" element={<NamePic/>} />
+      <Route path="/Book/:bookid" element={<BookDetail/>} />
+    </Routes>
     </div>
   );
+  // jsx ends
 }
 
+function HomePage(){
+  return(
+    <h1>Welcome to Home Page</h1>
+  )
+}
+
+function BookDetail(){
+  const{bookid} = useParams();
+  return(
+    <div>
+      hey this is my id {bookid}
+    </div>
+  )
+}
+
+
+
 export default App;
+
+
+

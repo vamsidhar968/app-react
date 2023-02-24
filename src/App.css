@@ -1,38 +1,74 @@
-.App {
-  text-align: center;
+/* *{
+  background-image: linear-gradient(76deg,rgb(235, 200, 135),plum)
+} */
+.profile-pic {
+  width:300px;
+  height: 300px;
+  border-radius: 80%;
+  object-fit: cover;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.App > div:nth-child(2) > .profile-pic {
+  border-radius: 0px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.first-container{
+  padding: 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Likebtn,.Dislikebtn{
+  font-size: 1.5rem;
+}
+
+.Likebtn{
+  margin-right : 1rem;
+}
+
+.align{
+  display:flex;
+}
+
+.btnf{
+  height:35px;
+  width:100px
+}
+
+.Bookspec{
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Bookcontent{
+  width:300px;
+}
+
+.BookImage{ 
+  height:450px;
+  width: 300px;
+  object-fit: cover;
+}
+
+.BookSummary{
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.BookList{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 18px
+  
+}
+
+.BookTitle{
+  margin: 0;
+}
+
+.aligning{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  gap : 15px
 }
