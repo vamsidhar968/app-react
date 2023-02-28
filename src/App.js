@@ -1,10 +1,13 @@
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 // import { Changecolor } from './Changecolor';
-import {Routes,Route,Link, useParams } from "react-router-dom";
+import {Routes,Route,Link,Navigate } from "react-router-dom";
 import { Changecolor } from './Changecolor';
 import { NamePic } from './NamePic';
 import { BookList } from './BookList';
+import { BookDetail } from './BookDetail';
+import { PageNotFound } from './PageNotFound';
+import { HomePage } from './HomePage';
 export const INITIAL_BOOK_LIST = [
   {
     name: "Charlotte's web",
@@ -36,6 +39,7 @@ export const INITIAL_BOOK_LIST = [
     summary:
       "There's no secret to The Secret. The book and movie simply state that your thoughts control the universe. Through this “law of attraction” you “manifest” your desires. “It is exactly like placing an order from a catalogue",
     rating: 8.8,
+    trailer: "https://www.youtube.com/embed/san61qTwWsU"  
   },
   {
     name: "Discover Your Destiny",
@@ -81,62 +85,11 @@ export const obj = [
 
 
 function App() {
-  // js starts
-  // const name ="vamsi";
-  // const name1 ="chinna"
-  // const names = ["vamsi", "chinna", "vikas", "sanjeev", "Yuga"]
 
-  // js ends
-  // jsx starts
+  const[bookList, setBookList] = useState(INITIAL_BOOK_LIST)
+  
   return (
     <div className="App">
-      {/* <h1>Hello {name} and {name1}</h1> */}
-       {/* <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2> */}
-
-      {/* <Second name = {names[0]}/>
-      <Second name = {names[1]}/>
-      <Second name = {names[2]}/> */}
-
-{/*       
-      {names.map((person,index) => 
-      <Second name = {person} num = {index}/>)} */}
-
-      {/* {
-        obj.map(user => 
-        <Group name = {user.name} pic = {user.pic}/>)
-      } */}
-
-
-{/* 
-      <First
-        name="Vamsi"
-        pic="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2-QM5dt3w73nejHCR9peB2o98yHOcI6jLxg&usqp=CAU"
-      />
-      <First
-        name="Bharath"
-        pic="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSux-tggbCDFeyKdqdKonT6zXOHR3TzdqPXJrWJ-hlFJpl1xOZV6giGAiCKqsol6MOPshI&usqp=CAU"
-      />
-      <First
-        name="Prakash"
-        pic="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0s-_blb4lEdA99WhU9RvWXWRskaHJA4snyQ&usqp=CAU"
-      /> */}
-
-      {/* <Buttoncount/>
-      <Buttoncount1/> */}
-      {/* <Changecolor/> */}
-      {/* <Example1/>
-      {
-        names.map((value, index) => <Example2 name={value}/>)
-      }
-
-      {
-        obj.map((value, index) => <Example2 name={value.name}/>)
-      } */}
-
-      {/* <Buttonexample/>
-      <Coloring/> */}
-
     <nav>
       <li>
       <Link to="/">Home</Link>
@@ -154,29 +107,17 @@ function App() {
 
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/Book" element={<BookList />} />
+      <Route path="/Book" element={<BookList bookList={bookList} setBookList={setBookList}  />} />
       <Route path="/addcolor" element={<Changecolor />} />
       <Route path="/picName" element={<NamePic/>} />
-      <Route path="/Book/:bookid" element={<BookDetail/>} />
+      <Route path="/Book/:bookid" element={<BookDetail bookList={bookList} />} />
+      {/* <Route path="/guide" element={<BookList bookList={bookList} setBookList={setBookList}  />} /> */}
+      <Route path="/guide" element={<Navigate replace to="/Book" />} />
+      <Route path="*" element={<PageNotFound/>}></Route>
     </Routes>
     </div>
   );
   // jsx ends
-}
-
-function HomePage(){
-  return(
-    <h1>Welcome to Home Page</h1>
-  )
-}
-
-function BookDetail(){
-  const{bookid} = useParams();
-  return(
-    <div>
-      hey this is my id {bookid}
-    </div>
-  )
 }
 
 

@@ -17,7 +17,7 @@ export function AddBook({ book , id }) {
   //       "The novel tells the story of a livestock pig named Wilbur and his friendship with a barn spider named Charlotte. When Wilbur is in danger of being slaughtered by the farmer, Charlotte writes messages praising Wilbur in her web in order to persuade the farmer to let him live.",
   //   }
 
-  const navigate = useNavigate();
+ 
   const [show, setShow] = useState(true);
 
   const style1 = {
