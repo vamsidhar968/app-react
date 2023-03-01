@@ -8,6 +8,10 @@ import { BookList } from './BookList';
 import { BookDetail } from './BookDetail';
 import { PageNotFound } from './PageNotFound';
 import { HomePage } from './HomePage';
+import { AddNewBook } from './AddNewBook';
+
+
+
 export const INITIAL_BOOK_LIST = [
   {
     name: "Charlotte's web",
@@ -83,7 +87,6 @@ export const obj = [
   },
 ]
 
-
 function App() {
 
   const[bookList, setBookList] = useState(INITIAL_BOOK_LIST)
@@ -103,6 +106,10 @@ function App() {
       <li>
       <Link to="/picname">Namedetail</Link>
       </li>
+      <li>
+      <Link to="/Book/add">AddNewBook</Link>
+      </li>
+
     </nav>
 
     <Routes>
@@ -111,17 +118,16 @@ function App() {
       <Route path="/addcolor" element={<Changecolor />} />
       <Route path="/picName" element={<NamePic/>} />
       <Route path="/Book/:bookid" element={<BookDetail bookList={bookList} />} />
+      <Route path="/Book/add" element={<AddNewBook bookList={bookList} setBookList={setBookList}  />} />
       {/* <Route path="/guide" element={<BookList bookList={bookList} setBookList={setBookList}  />} /> */}
       <Route path="/guide" element={<Navigate replace to="/Book" />} />
-      <Route path="*" element={<PageNotFound/>}></Route>
+      <Route path="/404" element={<PageNotFound/>}/>
+      <Route path="*" element={<Navigate replace to="/404" />}></Route>
     </Routes>
     </div>
   );
   // jsx ends
 }
-
-
-
 export default App;
 
 
