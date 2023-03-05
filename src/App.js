@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
 // import { Changecolor } from './Changecolor';
-import {Routes,Route,Link,Navigate } from "react-router-dom";
+import {Routes,Route,Link,Navigate,useNavigate } from "react-router-dom";
 import { Changecolor } from './Changecolor';
 import { NamePic } from './NamePic';
 import { BookList } from './BookList';
@@ -9,8 +9,14 @@ import { BookDetail } from './BookDetail';
 import { PageNotFound } from './PageNotFound';
 import { HomePage } from './HomePage';
 import { AddNewBook } from './AddNewBook';
-
-
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import Paper from '@mui/material/Paper';
 
 export const INITIAL_BOOK_LIST = [
   {
@@ -87,31 +93,39 @@ export const obj = [
   },
 ]
 
-function App() {
 
+
+
+function App() {
+  let navigate = useNavigate()
   const[bookList, setBookList] = useState(INITIAL_BOOK_LIST)
+  const [mode,setMode] = useState("dark")
+  const Theme = createTheme({
+    palette: {
+    mode: mode 
+  },
+});
+ 
   
   return (
+  <ThemeProvider theme={Theme}>
+    <CssBaseline />
     <div className="App">
-    <nav>
-      <li>
-      <Link to="/">Home</Link>
-      </li>
-      <li>
-      <Link to="/Book">Books</Link>
-      </li>
-      <li>
-      <Link to="/addcolor">ColorGame</Link>
-      </li>
-      <li>
-      <Link to="/picname">Namedetail</Link>
-      </li>
-      <li>
-      <Link to="/Book/add">AddNewBook</Link>
-      </li>
+      <AppBar position="static">
+      <Toolbar>
+        <Button color="inherit" onClick={()=> navigate("/")}> Home </Button>
+        <Button color="inherit" onClick={()=> navigate("/Book")}> Books </Button>
+        <Button color="inherit" onClick={()=> navigate("/addcolor")}> ColorGame </Button>
+        <Button color="inherit" onClick={()=> navigate("/picname")}> Namedetail </Button>
+        <Button color="inherit" onClick={()=> navigate("/Book/add")}> AddNewBook </Button>
+        <Button color="inherit" onClick={()=> setMode(mode === "dark"? "light": "dark")}> 
+        {mode === "dark"? <Brightness7Icon/> : <Brightness4Icon/>} 
+        {mode === "dark"? "LightMode" : "DarkMode"}
+        </Button>
 
-    </nav>
-
+      </Toolbar>
+      </AppBar>
+  
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/Book" element={<BookList bookList={bookList} setBookList={setBookList}  />} />
@@ -125,10 +139,30 @@ function App() {
       <Route path="*" element={<Navigate replace to="/404" />}></Route>
     </Routes>
     </div>
+  </ThemeProvider>
   );
   // jsx ends
 }
 export default App;
+
+{/* <nav>
+<li>
+<Link to="/">Home</Link>
+</li>
+<li>
+<Link to="/Book">Books</Link>
+</li>
+<li>
+<Link to="/addcolor">ColorGame</Link>
+</li>
+<li>
+<Link to="/picname">Namedetail</Link>
+</li>
+<li>
+<Link to="/Book/add">AddNewBook</Link>
+</li>
+
+</nav> */}
 
 
 
