@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AddBook } from './AddBook';
-import { INITIAL_BOOK_LIST } from './App';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import { API } from './global';
 
-export function BookList({bookList}) {
+
+export function BookList() {
   // const bookList = INITIAL_BOOK_LIST;
   
   // const[name,setName] = useState("")
@@ -12,6 +11,17 @@ export function BookList({bookList}) {
   // const[rating,setRating] = useState("")
   // const[summary,setSummary] = useState("")
   // const[trailer,setTrailer] = useState("")
+  console.log(`${API}`)
+  const[bookList, setBookList] = useState([])
+  useEffect(() => {
+    fetch(`${API}/Book`,{
+        method: 'GET',
+    })
+    .then((response) => response.json())
+    .then((bkdata) => {
+    setBookList(bkdata)})
+  },[])
+  
   return (
     <div className="aligning">
       {/* <TextField id="outlined-basic" label="Name" variant="outlined" onChange={(event) => setName(event.target.value)} placeholder="enter the name"/>
@@ -29,7 +39,7 @@ export function BookList({bookList}) {
         }
         setBookList([...bookList,newBook])}}>Add Book</Button> */}
     <div className="BookList1">
-      {bookList.map((bookdetails, index) => <AddBook key={index} book={bookdetails} id={index}/>)}
+      {bookList.map((bk, index) => <AddBook key={index} book={bk} id={bk.id}/>)}
     </div>
    </div>
   );

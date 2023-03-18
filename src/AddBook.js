@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom"
 import IconButton from '@mui/material/IconButton';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import InfoIcon from '@mui/icons-material/Info';
 import { Buttoncount } from './Buttoncount';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { API } from './global';
 
 export function AddBook({ book , id }) {
   // const BOOK_LIST = 
@@ -19,6 +21,8 @@ export function AddBook({ book , id }) {
 
   const navigate = useNavigate();
   const [show, setShow] = useState(true);
+  const[deletebook, setDeletebook] = useState({})
+  
 
   const style1 = {
     color: book.rating > 8 ? "green" : "red"
@@ -44,6 +48,21 @@ export function AddBook({ book , id }) {
       {show ? <p className="BookSummary">{book.summary}</p> : ""}
       {/* <p style={styles} className="BookSummary">{book.summary}</p> */}  
       <Buttoncount/>
+
+    
+
+      <IconButton onClick={()=>
+      
+        fetch(`${API}/${book.id}`,{
+          method: 'DELETE',
+        })
+        .then((response) => response.json())
+        .then((dbkdata) => {
+        setDeletebook(dbkdata)})
+      }>
+      <DeleteIcon/>
+      </IconButton>
+
     </div>
   );
 }
