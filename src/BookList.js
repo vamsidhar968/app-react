@@ -12,15 +12,26 @@ export function BookList() {
   // const[summary,setSummary] = useState("")
   // const[trailer,setTrailer] = useState("")
   console.log(`${API}`)
-  const[bookList, setBookList] = useState([])
-  useEffect(() => {
+  const[booklist, setBooklist] = useState([])
+  // useEffect(() => {
+  //   fetch(`${API}/Book`,{
+  //       method: 'GET',
+  //   })
+  //   .then((response) => response.json())
+  //   .then((bkdata) => {
+  //   setBookList(bkdata)})
+  // },[])
+  const getbooks = () => {
     fetch(`${API}/Book`,{
-        method: 'GET',
-    })
-    .then((response) => response.json())
-    .then((bkdata) => {
-    setBookList(bkdata)})
-  },[])
+      method: 'GET',
+  })
+  .then((response) => response.json())
+  .then((bkdata) => {
+  setBooklist(bkdata)})
+  }
+
+
+useEffect(() => getbooks(), [])
   
   return (
     <div className="aligning">
@@ -39,7 +50,7 @@ export function BookList() {
         }
         setBookList([...bookList,newBook])}}>Add Book</Button> */}
     <div className="BookList1">
-      {bookList.map((bk, index) => <AddBook key={index} book={bk} id={bk.id}/>)}
+      {booklist.map((bk, index) => <AddBook key12={index} book={bk} id={bk.id} getBook = {getbooks}/>)}
     </div>
    </div>
   );

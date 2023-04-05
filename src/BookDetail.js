@@ -10,7 +10,7 @@ export function BookDetail() {
   const [book,setBook] = useState({});
   // let bookdetail = bookList[bookid];
   useEffect(() => {
-    fetch(`${API}/${bookid}`,{
+    fetch(`${API}/Book/${bookid}`,{
       method: 'GET',
     })
     .then((response) => response.json())

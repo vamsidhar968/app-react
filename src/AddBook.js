@@ -7,8 +7,11 @@ import InfoIcon from '@mui/icons-material/Info';
 import { Buttoncount } from './Buttoncount';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { API } from './global';
+import EditIcon from '@mui/icons-material/Edit';
 
-export function AddBook({ book , id }) {
+
+export function AddBook({book , id , getBook }) {
+  console.log(book,id);
   // const BOOK_LIST = 
   //   {
   //     name: "Charlotte's web",
@@ -22,7 +25,7 @@ export function AddBook({ book , id }) {
   const navigate = useNavigate();
   const [show, setShow] = useState(true);
   const[deletebook, setDeletebook] = useState({})
-  
+  const [booklist, setBooklist] = useState([])
 
   const style1 = {
     color: book.rating > 8 ? "green" : "red"
@@ -30,6 +33,19 @@ export function AddBook({ book , id }) {
   // const styles = {
   //   display: show ? "block" : "none"
   // }
+
+//   const getbooks = () => {
+//     fetch(`${API}/Book`,{
+//       method: 'GET',
+//   })
+//   .then((response) => response.json())
+//   .then((bkdata) => {
+//   setBooklist(bkdata)})
+//   }
+
+
+// useEffect(() => getbooks(), [])
+
   return (
     <div className="Bookcontent">
       <img className="BookImage" src={book.poster} alt={book.name} />
@@ -49,19 +65,23 @@ export function AddBook({ book , id }) {
       {/* <p style={styles} className="BookSummary">{book.summary}</p> */}  
       <Buttoncount/>
 
-    
 
       <IconButton onClick={()=>
       
-        fetch(`${API}/${book.id}`,{
+        fetch(`${API}/Book/${book.id}`,{
           method: 'DELETE',
         })
-        .then((response) => response.json())
-        .then((dbkdata) => {
-        setDeletebook(dbkdata)})
+        .then((response) => getBook())
+     
       }>
       <DeleteIcon/>
       </IconButton>
+
+      <IconButton aria-label="Edit" onClick={()=>navigate("/Book/edit/" + id)}>
+      <EditIcon/>
+      </IconButton>
+
+     
 
     </div>
   );

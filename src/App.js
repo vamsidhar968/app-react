@@ -16,6 +16,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import {EditBook} from './EditBook';
+import {BasicForm} from './BasicForm'
 
 
 // export const INITIAL_BOOK_LIST = [
@@ -93,9 +95,6 @@ export const obj = [
   },
 ]
 
-
-
-
 function App() {
   let navigate = useNavigate()
   // const[bookList, setBookList] = useState(INITIAL_BOOK_LIST)
@@ -122,9 +121,10 @@ function App() {
       <Toolbar>
         <Button color="inherit" onClick={()=> navigate("/")}> Home </Button>
         <Button color="inherit" onClick={()=> navigate("/Book")}> Books </Button>
-        <Button color="inherit" onClick={()=> navigate("/addcolor")}> ColorGame </Button>
-        <Button color="inherit" onClick={()=> navigate("/picname")}> Namedetail </Button>
-        <Button color="inherit" onClick={()=> navigate("/Book/add")}> AddNewBook </Button>
+        <Button color="inherit" onClick={()=> navigate("/addcolor")}> Color Game </Button>
+        <Button color="inherit" onClick={()=> navigate("/picname")}> Name detail </Button>
+        <Button color="inherit" onClick={()=> navigate("/Book/add")}> Add Book </Button>
+        <Button color="inherit" onClick={()=> navigate("/basicform")}> Basic Form </Button>
         <Button color="inherit" onClick={()=> setMode(mode === "dark"? "light": "dark")}> 
         {mode === "dark"? <Brightness7Icon/> : <Brightness4Icon/>} 
         {mode === "dark"? "LightMode" : "DarkMode"}
@@ -140,8 +140,10 @@ function App() {
       <Route path="/picName" element={<NamePic/>} />
       <Route path="/Book/:bookid" element={<BookDetail />} />
       <Route path="/Book/add" element={<AddNewBook bookList={bookList} setBookList={setBookList}  />} />
+      <Route path="/Book/edit/:bookid" element={<EditBook />} />
       {/* <Route path="/guide" element={<BookList bookList={bookList} setBookList={setBookList}  />} /> */}
       <Route path="/guide" element={<Navigate replace to="/Book" />} />
+      <Route path="/basicform" element={<BasicForm />} />
       <Route path="/404" element={<PageNotFound/>}/>
       <Route path="*" element={<Navigate replace to="/404" />}></Route>
     </Routes>
@@ -150,6 +152,7 @@ function App() {
   );
   // jsx ends
 }
+
 export default App;
 
 {/* <nav>
